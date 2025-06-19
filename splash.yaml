@@ -1,0 +1,19 @@
+flutter_native_splash:
+  #  light made
+  color: "#FFFFFF"
+  image: assets/logos/logo light bg.png
+
+  #  dark mode
+  color_dark: '#253439'
+  image_dark: assets/logos/logo dark bg.png
+
+  #  for android 12
+  android_12:
+    #  light made
+    color: "#FFFFFF"
+    image: assets/logos/logo light bg.png
+    #  dark mode
+    color_dark: '#253439'
+    image_dark: assets/logos/logo dark bg.png
+
+  web: false

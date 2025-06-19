@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
-class App extends StatelessWidget {
-  const App({super.key});
+import 'app.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
+void main() {
+  // Todo: Add widget binding
+  // Todo: init local storage
+  // Todo: Await native splash
+  // Todo: init firebase
+  // Todo: init auth
 
-      ),
-    );
-  }
+  runApp(const App(
+
+  ));
+
 }

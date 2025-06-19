@@ -18,14 +18,21 @@ dependencies:
     sdk: flutter
 
 #  UTILITY PACKAGES
-
+  http: ^1.4.0
+  intl: ^0.20.2
+  logger: ^2.5.0
+  url_launcher: ^6.3.1
 
 #  ICONS
   iconsax: ^0.0.8
   cupertino_icons: ^1.0.8
 
-#  STATE MANAGEMANT
+#  STATE MANAGEMENT
   get: ^4.6.5
+  get_storage: ^2.1.1
+  flutter_native_splash: ^2.4.6
+  smooth_page_indicator: ^1.2.1
+
 
 #  PRODUCT SPECIFIC
 
@@ -47,6 +54,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/logos/
+    - assets/onboarding/
 
 #  fonts:
 #    - family: Poppins
