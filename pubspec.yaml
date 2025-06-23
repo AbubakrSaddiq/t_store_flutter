@@ -33,6 +33,9 @@ dependencies:
   flutter_native_splash: ^2.4.6
   smooth_page_indicator: ^1.2.1
   carousel_slider: ^5.1.1
+  readmore: ^3.0.0
+  flutter_rating_bar: ^4.0.1
+  firebase_core: ^3.14.0
 
 
 
@@ -70,6 +73,8 @@ flutter:
     - assets/images/email/
     - assets/images/app_icon/
     - assets/images/products/
+    - assets/images/user/
+    - assets/icons/payment/
 
 
 #  fonts:

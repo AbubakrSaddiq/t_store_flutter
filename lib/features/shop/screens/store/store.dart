@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/features/shop/screens/all_brands/all_brands.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
@@ -61,7 +62,7 @@ class StoreScreen extends StatelessWidget {
                       ///featured brands
                       SectionHeading(
                         title: 'Featured Brands',
-                        onPressed: () {},
+                        onPressed: () => Get.to(() => AllBrands()),
                       ),
                       const SizedBox(height: StoreSizes.spaceBtwItems / 1.5),
                       GridLayout(

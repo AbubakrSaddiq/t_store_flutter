@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/features/shop/screens/cart/cart.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/texts.dart';
 import 'appbar.dart';
@@ -23,7 +24,7 @@ class HomeAppBar extends StatelessWidget {
       ),
       ///shopping cart icon and number
       actions: [
-        StoreCartCounterIcon(iconColor: StoreColors.white, onPressed: () {},)
+        StoreCartCounterIcon(iconColor: StoreColors.white, onPressed: () => Get.to(() =>  CartScreen()),)
       ],
     );
   }
