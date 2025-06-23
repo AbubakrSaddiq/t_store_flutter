@@ -8,13 +8,13 @@ class StoreImages {
   static String onBoardingImage3 =
       "assets/onboarding/undraw_credit-card-payment_3zqz.png";
   static String onBoardingImage4 =
-      "assets/onboarding/undraw_hello_ccwj.png";
+      "assets/onboarding/welcome.gif";
   static String onBoardingImage5 =
       "assets/onboarding/undraw_drone-delivery_ri74.png";
 
 //app logo images
-  static String lightAppLogo = "assets/logos/logo light bg.png";
-  static String darkAppLogo = "assets/logos/logo dark bg.png";
+  static String darkAppLogo = "assets/logos/logo light bg.png";
+  static String lightAppLogo = "assets/logos/logo dark bg.png";
 
 //social logos
   static String google = "assets/icons/icons8-google-48.png";
@@ -30,24 +30,23 @@ class StoreImages {
   static String dotsLoading = "assets/images/animations/dots-loading.gif";
   static String loading = "assets/images/animations/loading.gif";
 
-  //categories
-  static String electricIcon =
-      "assets/icons/categories/WhatsApp Image 2025-02-24 at 14.28.13.jpeg";
+  //popular categories
+  static String appliancesIcon =
+      "assets/images/popular_categories/icons8-appliances-64.png";
   static String jewelryIcon =
-      "assets/icons/categories/WhatsApp Image 2025-02-24 at 14.28.13 (1).jpeg";
+      "assets/images/popular_categories/icons8-jewelry-94.png";
   static String toyIcon =
-      "assets/icons/categories/WhatsApp Image 2025-02-24 at 14.28.14.jpeg";
-  static String fashionIcon = "assets/icons/categories/icons8-fashion-50.png";
+      "assets/images/popular_categories/icons8-toy-94.png";
+  static String deviceIcon = "assets/images/popular_categories/icons8-devices-48.png";
   static String clothesIcon =
-      "assets/icons/categories/WhatsApp Image 2025-02-24 at 14.28.14 (2).jpeg";
-  static String sportsIcon =
-      "assets/icons/categories/WhatsApp Image 2025-02-24 at 14.28.14 (3).jpeg";
-  static String computerIcon = "assets/icons/categories/icons8-computer-50.png";
+      "assets/images/popular_categories/icons8-fashion-100.png";
+  static String sportswearIcon =
+      "assets/images/popular_categories/icons8-sportswear-50.png";
 
 // promotion banner
-  static String promo1 = "assets/images/banners/promo1.jpg";
-  static String promo2 = "assets/images/banners/promo2.jpg";
-  static String promo3 = "assets/images/banners/promo3.jpg";
+  static String promo1 = "assets/images/banner/bleach.jpg";
+  static String promo2 = "assets/images/banner/demon slayer.jpg";
+  static String promo3 = "assets/images/banner/one piece.jpg";
 
 //  product images
   static String prod1 =

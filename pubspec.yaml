@@ -32,6 +32,8 @@ dependencies:
   get_storage: ^2.1.1
   flutter_native_splash: ^2.4.6
   smooth_page_indicator: ^1.2.1
+  carousel_slider: ^5.1.1
+
 
 
 #  PRODUCT SPECIFIC
@@ -42,6 +44,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.4
+#app icon
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: assets/images/app_icon/app_icon.png
+
+
 
   flutter_lints: ^5.0.0
 
@@ -55,6 +65,12 @@ flutter:
     - assets/images/
     - assets/logos/
     - assets/onboarding/
+    - assets/images/popular_categories/
+    - assets/images/banner/
+    - assets/images/email/
+    - assets/images/app_icon/
+    - assets/images/products/
+
 
 #  fonts:
 #    - family: Poppins

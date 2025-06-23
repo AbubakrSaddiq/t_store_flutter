@@ -13,11 +13,11 @@ class HomeCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> categories = [
       {"image": StoreImages.jewelryIcon, "title": "Jewelry"},
-      {"image": StoreImages.fashionIcon, "title": "Fashion"},
+      {"image": StoreImages.deviceIcon, "title": "Devices"},
       {"image": StoreImages.toyIcon, "title": "Toy"},
-      {"image": StoreImages.electricIcon, "title": "Electrical"},
+      {"image": StoreImages.appliancesIcon, "title": "Appliances"},
       {"image": StoreImages.clothesIcon, "title": "Clothes"},
-      {"image": StoreImages.sportsIcon, "title": "Sports"},
+      {"image": StoreImages.sportswearIcon, "title": "Sportswear"},
     ];
     return Padding(
       padding: const EdgeInsets.only(left: 18.0),

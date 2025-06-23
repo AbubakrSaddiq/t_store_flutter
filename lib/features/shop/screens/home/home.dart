@@ -69,40 +69,40 @@ class HomeScreen extends StatelessWidget {
             ),
 
             ///body
-            // Padding(
-            //   padding: const EdgeInsets.all(StoreSizes.defaultSpace),
-            //   child: Column(
-            //     children: [
-            //       ///promo slider
-            //       PromoSlider(
-            //         banners: [
-            //           StoreImages.promo1,
-            //           StoreImages.promo2,
-            //           StoreImages.promo3
-            //         ],
-            //       ),
-            //       const SizedBox(
-            //         height: StoreSizes.spaceBtwSections,
-            //       ),
-            //
-            //       ///heading
-            //       SectionHeading(
-            //         title: 'Popular Products',
-            //         onPressed: () => Get.to(() => const AllProducts()),
-            //         showActionButton: true,
-            //       ),
-            //       const SizedBox(
-            //         height: StoreSizes.spaceBtwItems,
-            //       ),
-            //
-            //       ///popular categories
-            //       GridLayout(
-            //         itemBuilder: (_, index) => const ProductCardVertical(),
-            //         itemCount: 5,
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.all(StoreSizes.defaultSpace),
+              child: Column(
+                children: [
+                  ///promo slider
+                  PromoSlider(
+                    banners: [
+                      StoreImages.promo1,
+                      StoreImages.promo2,
+                      StoreImages.promo3
+                    ],
+                  ),
+                  const SizedBox(
+                    height: StoreSizes.spaceBtwSections,
+                  ),
+
+                  ///heading
+                  SectionHeading(
+                    title: 'Popular Products',
+                    onPressed: (){},
+                    showActionButton: true,
+                  ),
+                  const SizedBox(
+                    height: StoreSizes.spaceBtwItems,
+                  ),
+
+                  ///popular categories
+                  GridLayout(
+                    itemBuilder: (_, index) => const ProductCardVertical(),
+                    itemCount: 5,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
