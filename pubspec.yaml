@@ -79,6 +79,7 @@ flutter:
     - assets/images/products/
     - assets/images/user/
     - assets/icons/payment/
+    - assets/animation/
 
 
 #  fonts:

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../utils/formatters/formatter.dart';
 
 class UserModel {
-  //keep the values you dont want to update as "final"
+  //keep the values you don't want to update as "final"
   final String id;
   final String username;
   final String email;

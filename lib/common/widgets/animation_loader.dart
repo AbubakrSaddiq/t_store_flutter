@@ -29,7 +29,7 @@ class StoreAnimationLoaderWidget extends StatelessWidget {
                 .size
                 .width * 0.8),
             SizedBox(height: StoreSizes.defaultSpace,),
-            Text('Welcome Note', style: Theme
+            Text(text, style: Theme
                 .of(context)
                 .textTheme
                 .bodyMedium, textAlign: TextAlign.center,),

@@ -12,9 +12,7 @@ import '../../login/widgets/social_widgets.dart';
 import 'Terms_and_condition_checkbox.dart';
 
 class SignUpForm extends StatelessWidget {
-  const SignUpForm({
-    super.key,
-  });
+  const SignUpForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +33,12 @@ class SignUpForm extends StatelessWidget {
                       StoreValidator.validateEmptyText('First Name', value),
                   expands: false,
                   decoration: InputDecoration(
-                      labelText: StoreTexts.firstName,
-                      prefixIcon: const Icon(Iconsax.user)),
+                    labelText: StoreTexts.firstName,
+                    prefixIcon: const Icon(Iconsax.user),
+                  ),
                 ),
               ),
-              const SizedBox(
-                width: StoreSizes.spaceBtwItems,
-              ),
+              const SizedBox(width: StoreSizes.spaceBtwItems),
               Expanded(
                 child: TextFormField(
                   validator: (value) =>
@@ -49,15 +46,14 @@ class SignUpForm extends StatelessWidget {
                   controller: controller.lastName,
                   expands: false,
                   decoration: InputDecoration(
-                      labelText: StoreTexts.lastName,
-                      prefixIcon: const Icon(Iconsax.user)),
+                    labelText: StoreTexts.lastName,
+                    prefixIcon: const Icon(Iconsax.user),
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(
-            height: StoreSizes.spaceBtwItems,
-          ),
+          const SizedBox(height: StoreSizes.spaceBtwItems),
 
           ///username
           TextFormField(
@@ -66,36 +62,33 @@ class SignUpForm extends StatelessWidget {
             controller: controller.username,
             expands: false,
             decoration: InputDecoration(
-                labelText: StoreTexts.username,
-                prefixIcon: const Icon(Iconsax.user_edit)),
+              labelText: StoreTexts.username,
+              prefixIcon: const Icon(Iconsax.user_edit),
+            ),
           ),
-          const SizedBox(
-            height: StoreSizes.spaceBtwItems,
-          ),
+          const SizedBox(height: StoreSizes.spaceBtwItems),
 
           ///email
           TextFormField(
             validator: (value) => StoreValidator.validateEmail(value),
             controller: controller.email,
             decoration: InputDecoration(
-                labelText: StoreTexts.email,
-                prefixIcon: const Icon(Iconsax.direct_inbox)),
+              labelText: StoreTexts.email,
+              prefixIcon: const Icon(Iconsax.direct_inbox),
+            ),
           ),
-          const SizedBox(
-            height: StoreSizes.spaceBtwItems,
-          ),
+          const SizedBox(height: StoreSizes.spaceBtwItems),
 
           ///phone number
           TextFormField(
             validator: (value) => StoreValidator.validatePhoneNumber(value),
             controller: controller.phoneNumber,
             decoration: InputDecoration(
-                labelText: StoreTexts.phoneNumber,
-                prefixIcon: const Icon(Iconsax.call)),
+              labelText: StoreTexts.phoneNumber,
+              prefixIcon: const Icon(Iconsax.call),
+            ),
           ),
-          const SizedBox(
-            height: StoreSizes.spaceBtwItems,
-          ),
+          const SizedBox(height: StoreSizes.spaceBtwItems),
 
           ///password
           Obx(
@@ -104,29 +97,35 @@ class SignUpForm extends StatelessWidget {
               controller: controller.password,
               obscureText: controller.hideShowPassword.value,
               decoration: InputDecoration(
-                  labelText: StoreTexts.password,
-                  prefixIcon: const Icon(Iconsax.password_check),
-                  suffixIcon: IconButton(
-                      onPressed: () => controller.hideShowPassword.value = !controller.hideShowPassword.value,
-                      icon: Icon(controller.hideShowPassword.value ? Iconsax.eye_slash : Iconsax.eye))),
+                labelText: StoreTexts.password,
+                prefixIcon: const Icon(Iconsax.password_check),
+                suffixIcon: IconButton(
+                  onPressed: () => controller.hideShowPassword.value =
+                      !controller.hideShowPassword.value,
+                  icon: Icon(
+                    controller.hideShowPassword.value
+                        ? Iconsax.eye_slash
+                        : Iconsax.eye,
+                  ),
+                ),
+              ),
             ),
           ),
-          const SizedBox(
-            height: StoreSizes.spaceBtwItems,
-          ),
+          const SizedBox(height: StoreSizes.spaceBtwItems),
 
           ///terms&conditions checkbox
           TermsAndConditionCheckBox(),
 
           ///signup button
           SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                  onPressed: () => controller.signup(),
-                  child: Text(StoreTexts.signUpBtn))),
-          const SizedBox(
-            height: StoreSizes.spaceBtwItems,
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () => controller.signup(),
+              child: Text(StoreTexts.signUpBtn),
+            ),
           ),
+
+          SizedBox(height: StoreSizes.spaceBtwItems),
 
           ///divider
           Row(
@@ -154,13 +153,11 @@ class SignUpForm extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: StoreSizes.spaceBtwSections,
-          ),
+          const SizedBox(height: StoreSizes.spaceBtwSections),
 
           ///footer
           ///social icon
-          const socialButtons()
+          const socialButtons(),
         ],
       ),
     );

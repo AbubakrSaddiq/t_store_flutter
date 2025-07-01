@@ -19,17 +19,21 @@ class FullScreenLoader {
                   : StoreColors.white,
               width: double.infinity,
               height: double.infinity,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 200,
-                  ),
-                  StoreAnimationLoaderWidget(text: text, animation: animation)
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 200,
+                    ),
+                    // StoreAnimationLoaderWidget(text: text, animation: animation)
+                  ],
+                ),
               ),
             )));
   }
 
+  
+  
   ///stop the currently open loading dialog
   static stopLoading(){
     Navigator.of(Get.overlayContext!).pop(); //close dialog using navigator

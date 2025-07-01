@@ -24,8 +24,8 @@ class StoreImages {
       "assets/images/animations/undraw_message-sent_785q.png";
   static String verifyEmailArrived = "assets/images/undraw_mail-sent_ujev.png";
   static String accountSuccess = "assets/images/undraw_success_288d.png";
-  static String dotsLoading = "assets/images/animations/dots-loading.gif";
-  static String loading = "assets/images/animations/loading.gif";
+  static String dotsLoading = "assets/animation/dots-loading.gif";
+  static String loading = "assets/animation/loading.gif";
 
   //popular categories
   static String appliancesIcon =
