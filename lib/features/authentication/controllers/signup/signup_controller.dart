@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../data/repositories/authentication/authentication_repository.dart';
 import '../../../../data/repositories/user/user_model.dart';
@@ -26,62 +27,101 @@ class SignUpController extends GetxController {
 
   ///signup
   void signup() async {
-    try {
-      //  start loading
-      FullScreenLoader.openLoadingDialog(
-          'Processing your request', StoreImages.dotsLoading);
-
-      //  check internet connectivity
-      final isConnected = await NetworkManager.instance.isConnected();
-      if (!isConnected) {
-        FullScreenLoader.stopLoading();
-        return;
-      }
-
-      //  form validation
-      if (!signupFormKey.currentState!.validate()) return;
-
-      //  privacy policy check
-      if (!privacyPolicy.value) {
-        StoreLoaders.warningSnackBar(
-            title: 'Accept Privacy Policy',
-            message: 'You must read and accept privacy policy terms');
-        return;
-      }
-
-      //  register user in the firebase auth and save user data in the firebase
-      final userCredential = await AuthenticationRepository.instance
-          .registerWithEmailAndPassword(
-              email.text.trim(), password.text.trim());
-
-      //  save auth user data in the firebase
-      final newUser = UserModel(
-          id: userCredential.user!.uid,
-          username: username.text.trim(),
-          email: email.text.trim(),
-          firstName: firstName.text.trim(),
-          lastName: lastName.text.trim(),
-          phoneNumber: phoneNumber.text.trim(),
-          profilePicture: '');
-
-      final userRepository = Get.put(UserRepository());
-      await userRepository.saveUserRecord(newUser);
-
-      // remove loader
-      FullScreenLoader.stopLoading();
-
-      //  show success message
-      StoreLoaders.successSnackBar(title: 'Congratulations', message: 'Your account has been created. Verify email to continue');
-
-      //  goto to verify email screen
-      Get.to(() => VerifyEmailScreen());
-    } catch (e) {
-      //  show error message
-      StoreLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
-    }
+    // try {
+    //   //  start loading
+    //   FullScreenLoader.openLoadingDialog(
+    //       'Processing your request', StoreImages.dotsLoading);
+    //
+    //   //  check internet connectivity
+    //   final isConnected = await NetworkManager.instance.isConnected();
+    //   if (!isConnected) {
+    //     FullScreenLoader.stopLoading();
+    //     return;
+    //   }
+    //
+    //   //  form validation
+    //   if (!signupFormKey.currentState!.validate()) {
+    //     FullScreenLoader.stopLoading();
+    //     return;
+    //   }
+    //
+    //   //  privacy policy check
+    //   // if (!privacyPolicy.value) {
+    //   //   StoreLoaders.warningSnackBar(
+    //   //       title: 'Accept Privacy Policy',
+    //   //       message: 'You must read and accept privacy policy terms');
+    //   //   return;
+    //   // }
+    //
+    //   // //  register user in the firebase auth and save user data in the firebase
+    //   // final userCredential = await AuthenticationRepository.instance
+    //   //     .registerWithEmailAndPassword(
+    //   //         email.text.trim(), password.text.trim());
+    //   //
+    //   // //  save auth user data in the firebase
+    //   // final newUser = UserModel(
+    //   //     id: userCredential.user!.uid,
+    //   //     username: username.text.trim(),
+    //   //     email: email.text.trim(),
+    //   //     firstName: firstName.text.trim(),
+    //   //     lastName: lastName.text.trim(),
+    //   //     phoneNumber: phoneNumber.text.trim(),
+    //   //     profilePicture: '');
+    //   //
+    //   // final userRepository = Get.put(UserRepository());
+    //   // await userRepository.saveUserRecord(newUser);
+    //   //
+    //   // // remove loader
+    //   // FullScreenLoader.stopLoading();
+    //   //
+    //   // //  show success message
+    //   // StoreLoaders.successSnackBar(title: 'Congratulations', message: 'Your account has been created. Verify email to continue');
+    //   //
+    //   // //  goto to verify email screen
+    //   // Get.to(() => VerifyEmailScreen());
+    // } catch (e) {
+    //   //  show error message
+    //   StoreLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    // }
     // finally{
     //   // remove loader
     //   FullScreenLoader.stopLoading();
     // }
+
+    try {
+
+      //form validation
+      if (signupFormKey.currentState!.validate()) {
+        // Form is valid
+        print('First Name: ${firstName.text}');
+        print('Last Name: ${lastName.text}');
+        print('Username: ${username.text}');
+        print('Email: ${email.text}');
+        print('Phone: ${phoneNumber.text}');
+        print('Password: ${password.text}');
+        StoreLoaders.successSnackBar(
+          title: 'Congratulations',
+          message: 'Your account has been created. Verify email to continue',
+        );
+
+      }
+
+      if (!privacyPolicy.value) {
+        StoreLoaders.warningSnackBar(
+          title: 'Accept Privacy Policy',
+          message: 'You must read and accept privacy policy terms',
+        );
+        return;
+      }
+
+       // check internet connectivity
+        final isConnected = await NetworkManager.instance.isConnected();
+        if (!isConnected) {
+          FullScreenLoader.stopLoading();
+          return;
+        }
+    } catch (e) {
+      StoreLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    }
   }
 }

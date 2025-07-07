@@ -28,7 +28,8 @@ class SignupScreen extends StatelessWidget {
               ),
 
               ///form
-              const SignUpForm()
+               SignUpForm()
+
             ],
           ),
         ),

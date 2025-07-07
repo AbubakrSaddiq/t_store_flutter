@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import '../popups/loaders.dart';
 
 /// Manages network connectivity status and provides methods to check and handle connectivity changes
-class NetworkManager extends GetxController {
+class
+NetworkManager extends GetxController {
   static NetworkManager get instance => Get.find();
 
   final Connectivity _connectivity = Connectivity();

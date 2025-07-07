@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import
+'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/features/authentication/screens/signup/verify_email.dart';
@@ -13,6 +14,7 @@ import 'Terms_and_condition_checkbox.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +127,7 @@ class SignUpForm extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: StoreSizes.spaceBtwItems),
+          SizedBox(height: StoreSizes.spaceBtwSections),
 
           ///divider
           Row(

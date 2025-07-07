@@ -110,6 +110,7 @@ class LoginForm extends StatelessWidget {
                     width: double.infinity,
                     child: OutlinedButton(
                       onPressed: () => Get.to(() => const SignupScreen()),
+
                       style: ButtonStyle(
                         backgroundColor:
                         MaterialStateProperty.all(Colors.white70),
