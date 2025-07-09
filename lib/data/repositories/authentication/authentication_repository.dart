@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../../features/authentication/screens/login/login.dart';
 import '../../../features/authentication/screens/onboarding/onboarding.dart';
+import '../../../utils/exception/firebase_auth_exception.dart';
 import '../../../utils/exception/firebase_exception.dart';
 import '../../../utils/exception/format_exception.dart';
 import '../../../utils/exception/platform_exception.dart';
@@ -28,33 +29,58 @@ class AuthenticationRepository extends GetxController {
   void screenRedirect() {
     //  local storage
     deviceStorage.writeIfNull('isFirstTime', true);
+
     ///check if user is a first timer
     deviceStorage.read('isFirstTime') != true
         ? Get.offAll(() => const LoginScreen())
         : Get.offAll(() => const OnBoardingScreen());
   }
 
-  //email and password sign in
+  /*email and password sign in*/
 
   ///EmailAuthentication - sign in
+
   ///EmailAuthentication - register
-  Future<UserCredential> registerWithEmailAndPassword(String email, String password) async{
-    try{
-      return await _auth.createUserWithEmailAndPassword(email: email, password: password);
-    } on FirebaseException catch (e){
+  Future<UserCredential> registerWithEmailAndPassword(
+    String email,
+    String password,
+  ) async {
+    try {
+      return await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      throw StoreFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
       throw StoreFirebaseException(e.code).message;
-    }on FormatException catch (_){
+    } on FormatException catch (_) {
       throw StoreFormatException();
-    } on PlatformException catch (e){
+    } on PlatformException catch (e) {
       throw StorePlatformException(e.code).message;
-    }
-    catch (e){
+    } catch (e) {
       throw 'Something went wrong. Please try again...';
     }
   }
 
   ///ReAuthenticate - ReAuth user
   ///emailVerification - mail verification
+  Future<void> sendEmailVerification() async {
+    try{
+      await _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      throw StoreFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw StoreFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw StoreFormatException();
+    } on PlatformException catch (e) {
+      throw StorePlatformException(e.code).message;
+    }
+    catch (e){
+      throw 'Something went wrong. Please try again.';
+    }
+  }
   ///EmailAuthentication - forget password
 
   //federated identity and social sign in

@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import '../utils/connection/network_manager.dart';
 
 class GeneralBindings extends Bindings{

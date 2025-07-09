@@ -33,8 +33,8 @@ class UserModel {
     List<String> nameParts = fullName.split(" ");
     String firstName = nameParts[0].toLowerCase();
     String lastName = nameParts.length > 1 ? nameParts[1].toLowerCase() : "";
-    String camelCaseUsername = "$firstName$lastName";
-    String usernameWithPrefix = "cwt_$camelCaseUsername";
+    String camelCaseUsername = "$firstName$lastName"; //combine first name and last name
+    String usernameWithPrefix = "cwt_$camelCaseUsername"; //add "cwt_" prefix
     return usernameWithPrefix;
   }
 
@@ -61,7 +61,7 @@ class UserModel {
   }
 
   ///Factory method to create a UserModel from a firebase document snapshot
-
+  ///
   factory UserModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> document) {
     final data = document.data();

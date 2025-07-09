@@ -25,7 +25,7 @@ class FullScreenLoader {
                     SizedBox(
                       height: 200,
                     ),
-                    // StoreAnimationLoaderWidget(text: text, animation: animation)
+                    StoreAnimationLoaderWidget(text: text, animation: animation)
                   ],
                 ),
               ),

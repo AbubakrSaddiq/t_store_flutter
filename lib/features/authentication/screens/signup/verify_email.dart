@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/features/authentication/controllers/signup/verify_email_controller.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/texts.dart';
@@ -9,10 +10,14 @@ import '../login/login.dart';
 import 'email_success_screen.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key});
+  const VerifyEmailScreen({super.key, this.email});
+
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(VerifyEmailController());
+
     return Scaffold(
       appBar: AppBar(automaticallyImplyLeading: false, actions: [
         IconButton(
@@ -44,7 +49,7 @@ class VerifyEmailScreen extends StatelessWidget {
                 height: StoreSizes.spaceBtwItems,
               ),
               Text(
-                StoreTexts.yourEmailAddress,
+                email ?? '',
                 style: Theme.of(context).textTheme.labelLarge,
                 textAlign: TextAlign.center,
               ),
