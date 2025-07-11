@@ -11,13 +11,14 @@ import 'data/repositories/authentication/authentication_repository.dart';
 Future<void> main() async {
   /// widget binding
   final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  /// Get local storage
+
+  /// GetX local storage
   await GetStorage.init();
 
   /// Await native splash until other items load
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  /// init firebase
+  /// init firebase and authentication repository
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,).then(
       (FirebaseApp value) => Get.put(AuthenticationRepository())
   );

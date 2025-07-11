@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../../../common/styles/spacing_styles.dart';
-import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/texts.dart';
 import '../../../../utils/helpers/helper_functions.dart';
-import '../login/login.dart';
 
 class EmailSuccessScreen extends StatelessWidget {
   const EmailSuccessScreen({

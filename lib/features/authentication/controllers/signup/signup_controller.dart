@@ -30,9 +30,9 @@ class SignUpController extends GetxController {
   ///signup
   void signup() async {
     try {
-      // Start loading
+      // Start loading (its not showing the required, check)
       FullScreenLoader.openLoadingDialog(
-        'Processing...',
+        'Processing your request. Please wait...',
         StoreImages.dotsLoading,
       );
 

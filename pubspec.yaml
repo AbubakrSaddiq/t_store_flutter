@@ -81,6 +81,7 @@ flutter:
     - assets/images/user/
     - assets/icons/payment/
     - assets/animation/
+    - assets/images/login/
 
 
 #  fonts:

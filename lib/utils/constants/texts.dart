@@ -43,6 +43,9 @@ class StoreTexts{
   static String continueButton = "Continue";
   static String resendEmailBtn = "Resend Email";
   static String accountSuccessCreated = "Account Successfully Created";
+  static String accountCreatedTitle = "Your account has been created successfully";
+  static String accountCreatedSubTitle = "Your account is ready for use. Kindly login";
+
 
 //forget config
   static String forgetPasswordTitle = "Forget Password";

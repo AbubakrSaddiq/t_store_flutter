@@ -77,8 +77,11 @@ class StoreImages {
   static String review = "assets/images/user/user profile.jpg";
 
   //payment image
-
   static String cardPayment = "assets/icons/payment/icons8-magnetic-card-48.png";
   static String bankTransfer = "assets/icons/payment/icons8-bank-transfer-60.png";
   static String successfulPayment = "assets/icons/payment/icons8-success-48.png";
+
+//   login and signin
+  static String loginLoading = "assets/images/login/undraw_login_weas.png";
+
 }

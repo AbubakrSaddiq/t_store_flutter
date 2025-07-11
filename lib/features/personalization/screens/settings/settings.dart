@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:get/get.dart';
+import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/features/shop/screens/order/order.dart';
 import '../../../../utils/constants/colors.dart';
@@ -18,6 +19,8 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(AuthenticationRepository());
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -148,7 +151,7 @@ class SettingsScreen extends StatelessWidget {
                     width: double.infinity,
                     child: TextButton(
                       child: Text('Logout', style: Theme.of(context).textTheme.titleMedium,),
-                      onPressed: (){},
+                      onPressed: () => controller.logout(),
                     ),
                   )
                 ],
