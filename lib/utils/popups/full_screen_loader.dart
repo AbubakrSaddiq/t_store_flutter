@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../common/widgets/animation_loader.dart';
-import '../constants/colors.dart';
-import '../helpers/helper_functions.dart';
 
 
 ///A utility class for managing full screen loading dialog
