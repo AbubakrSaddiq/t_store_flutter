@@ -107,7 +107,7 @@ class LoginController extends GetxController {
     } catch (e, st) {
       FullScreenLoader.stopLoading();
       debugPrint('Login error: $e\n$st');
-      StoreLoaders.errorSnackBar(title: 'Login Failed', message: e.toString());
+      StoreLoaders.errorSnackBar(title: 'Invalid Email/Password', message: e.toString());
     }
   }
 }
