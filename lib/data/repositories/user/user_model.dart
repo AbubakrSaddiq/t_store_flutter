@@ -61,17 +61,19 @@ class UserModel {
   }
 
   ///Factory method to create a UserModel from a firebase document snapshot
-  ///
-  factory UserModel.fromSnapshot(
-      DocumentSnapshot<Map<String, dynamic>> document) {
-    final data = document.data();
-    if (data != null) {
+  factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
+    if (document.data() != null) {
+      final data = document.data()!;
+      // capitalize first letter
+      String capitalize(String s) =>
+          s.isNotEmpty ? s[0].toUpperCase() + s.substring(1).toLowerCase() : '';
+
       return UserModel(
         id: document.id,
-        username: data['Username'] ?? '',
+        username: capitalize(data['Username'] ?? ''),
         email: data['Email'] ?? '',
-        firstName: data['FirstName'] ?? '',
-        lastName: data['LastName'] ?? '',
+        firstName: capitalize(data['FirstName'] ?? ''),
+        lastName: capitalize(data['LastName'] ?? ''),
         phoneNumber: data['PhoneNumber'] ?? '',
         profilePicture: data['ProfilePicture'] ?? '',
       );

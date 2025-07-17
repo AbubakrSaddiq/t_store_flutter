@@ -5,8 +5,6 @@ import 'package:t_store/features/authentication/controllers/login/login_controll
 import 'package:t_store/features/authentication/screens/forget%20config/forget_password.dart';
 import 'package:t_store/features/authentication/screens/signup/signup.dart';
 import 'package:t_store/utils/validators/validation.dart';
-
-import '../../../../shop/widgets/navigation_menu.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';

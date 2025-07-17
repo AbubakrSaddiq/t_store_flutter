@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../widgets/appbar.dart';
 import '../../widgets/layout/grid_layout.dart';
 import '../../widgets/product_card_vertical.dart';
-import '../home/home.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({super.key});

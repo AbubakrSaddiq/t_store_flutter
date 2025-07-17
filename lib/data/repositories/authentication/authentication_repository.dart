@@ -22,6 +22,9 @@ class AuthenticationRepository extends GetxController {
 
   final _auth = FirebaseAuth.instance;
 
+  ///get authenticated user
+  User? get authUser => _auth.currentUser;
+
   ///called from main.dart on app lunch
   @override
   void onReady() {

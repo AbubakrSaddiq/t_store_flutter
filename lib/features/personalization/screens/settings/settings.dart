@@ -9,7 +9,6 @@ import '../../../../utils/constants/sizes.dart';
 import '../../../shop/widgets/appbar.dart';
 import '../../../shop/widgets/primary_header_container.dart';
 import '../../../shop/widgets/section_heading.dart';
-import '../../widgets/primary_header_container.dart' hide PrimaryHeaderContainer;
 import '../../widgets/settings_menu_tile.dart';
 import '../../widgets/user_profile_tile.dart';
 import '../profile/profile.dart';
