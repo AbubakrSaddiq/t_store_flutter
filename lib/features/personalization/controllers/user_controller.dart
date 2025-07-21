@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
@@ -10,6 +9,7 @@ import 'package:t_store/features/personalization/screens/profile/re_auth_user_lo
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/popups/loaders.dart';
 
+import '../../../utils/connection/network_manager.dart';
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/popups/full_screen_loader.dart';
 
@@ -80,7 +80,7 @@ class UserController extends GetxController {
       title: 'Delete Account',
       middleText: 'Are you sure you want to delete your account permanently?',
       confirm: OutlinedButton(onPressed: () async => deleteUserAccount(),
-          style: OutlinedButton.styleFrom(backgroundColor: Colors.red,),
+          style: OutlinedButton.styleFrom(backgroundColor: Colors.red, ),
           child: const Padding(padding: EdgeInsets.symmetric(horizontal: StoreSizes.lg), child: Text('Delete'),)
       ),
       cancel: OutlinedButton(onPressed: () => Navigator.of(Get.overlayContext!).pop(), child: const Text('Cancel'))
@@ -92,6 +92,14 @@ class UserController extends GetxController {
     try{
       //start loading
       FullScreenLoader.openLoadingDialog('Processing request...', StoreImages.loginLoading,);
+
+      // check internet connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        // remove loader
+        FullScreenLoader.stopLoading();
+        return;
+      }
 
       ///first re-authenticate user
       final auth = AuthenticationRepository.instance;
@@ -108,15 +116,44 @@ class UserController extends GetxController {
           FullScreenLoader.stopLoading();
           Get.to(() => const ReAuthLoginForms());
         }
-
       }
     } catch (e) {
       FullScreenLoader.stopLoading();
       StoreLoaders.errorSnackBar(title: 'Failed to delete', message: e.toString());
     }
   }
-///re-authenticate before deleting
-  void reAuthenticateEmailAndPassword(){
 
+///re-authenticate before deleting
+  Future<void> reAuthenticateEmailAndPassword() async {
+    try{
+      //start loading
+      FullScreenLoader.openLoadingDialog('Processing request...', StoreImages.loginLoading,);
+
+      // check internet connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        // remove loader
+        FullScreenLoader.stopLoading();
+        return;
+      }
+
+      //form validation
+      if (!reAuthFormKey.currentState!.validate()) {
+        // remove loader
+        FullScreenLoader.stopLoading();
+        return;
+      }
+
+    //   delete account in firestore and user authentication account
+      await AuthenticationRepository.instance.reAuthenticateWithEmailAndPassword(verifyEmail.text.trim(), verifyPassword.text.trim());
+      await AuthenticationRepository.instance.deleteAccount();
+
+      FullScreenLoader.stopLoading();
+      Get.offAll(() => const LoginScreen());
+
+    } catch (e) {
+      FullScreenLoader.stopLoading();
+      StoreLoaders.errorSnackBar(title: 'Failed to delete', message: e.toString());
+    }
   }
 }
