@@ -48,24 +48,31 @@ class UserController extends GetxController {
   ///save user record from any registration provider
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
-      if (userCredentials != null) {
-        //   convert names to first name and last name
-        final nameParts = UserModel.nameParts(
-            userCredentials.user!.displayName ?? '');
-        final username = UserModel.generateUserName(
-            userCredentials.user!.displayName ?? '');
 
-        //   map data
-        final user = UserModel(id: userCredentials.user!.uid,
-            username: username,
-            email: userCredentials.user!.email ?? '',
-            firstName: nameParts[0],
-            lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
-            phoneNumber: userCredentials.user!.phoneNumber ?? '',
-            profilePicture: userCredentials.user!.phoneNumber ?? '');
+      // first update Rx user and then check if user data is already saved. if not store new data
+      await fetchUserRecord();
 
-      //   save user data
-        await userRepository.createUser(user);
+      // if no record already stored
+      if (user.value.id.isEmpty){
+        if (userCredentials != null) {
+          //   convert names to first name and last name
+          final nameParts = UserModel.nameParts(
+              userCredentials.user!.displayName ?? '');
+          final username = UserModel.generateUserName(
+              userCredentials.user!.displayName ?? '');
+
+          //   map data
+          final user = UserModel(id: userCredentials.user!.uid,
+              username: username,
+              email: userCredentials.user!.email ?? '',
+              firstName: nameParts[0],
+              lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+              phoneNumber: userCredentials.user!.phoneNumber ?? '',
+              profilePicture: userCredentials.user!.phoneNumber ?? '');
+
+          //   save user data
+          await userRepository.createUser(user);
+        }
       }
     } catch (e) {
       StoreLoaders.warningSnackBar(title: 'Data not save',
@@ -155,5 +162,10 @@ class UserController extends GetxController {
       FullScreenLoader.stopLoading();
       StoreLoaders.errorSnackBar(title: 'Failed to delete', message: e.toString());
     }
+  }
+
+/// upload user profile picture
+  uploadUserProfilePicture() async {
+
   }
 }

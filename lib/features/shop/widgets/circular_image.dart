@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:t_store/features/personalization/widgets/StoreShimmer.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
@@ -26,23 +28,31 @@ class CircularImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final dark = StoreHelperFunction.isDarkMode(context);
     return Container(
       width: width,
       height: height,
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
-          color: backgroundColor ?? (dark ? StoreColors.black : StoreColors.white),
-          borderRadius: BorderRadius.circular(100)),
+        color:
+            backgroundColor ?? (dark ? StoreColors.black : StoreColors.white),
+        borderRadius: BorderRadius.circular(100),
+      ),
       child: Center(
-        child: Image(
-          image: isNetworkImage
-              ? NetworkImage(image)
-              : AssetImage(image) as ImageProvider,
-          color: overlayColor,
-          fit: fit,
-        ),
+        child: isNetworkImage
+            ? CachedNetworkImage(
+                fit: fit,
+                color: overlayColor,
+                imageUrl: image,
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    const StoreShimmer(width: 55, height: 55, radius: 55,),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              )
+            : Image(
+                image: AssetImage(image),
+                color: overlayColor,
+                fit: fit,
+              ),
       ),
     );
   }

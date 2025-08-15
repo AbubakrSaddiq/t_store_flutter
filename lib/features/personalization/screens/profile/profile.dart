@@ -19,47 +19,74 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: const StoreAppBar(title: Text('Profile'), showBackArrow: true,),
+
       ///body
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(StoreSizes.defaultSpace),
           child: Column(
             children: [
+
               ///profile picture
               SizedBox(
                 width: double.infinity,
                 child: Column(
                   children: [
-                    CircularImage(image: StoreImages.user, width: 80, height: 80,),
-                    TextButton(onPressed: (){}, child: const Text('Change Profile Picture'))
+                    Obx(() {
+                      final networkImage = controller.user.value.profilePicture;
+                      final image = networkImage.isNotEmpty ? networkImage : StoreImages.user;
+                      return CircularImage(
+                        image: image, width: 80, height: 80, isNetworkImage: networkImage.isNotEmpty,);
+                    }),
+                    TextButton(onPressed: () =>
+                        controller.
+                        uploadUserProfilePicture(),
+                        child: const Text('Change Profile Picture'))
                   ],
                 ),
               ),
               const SizedBox(height: StoreSizes.spaceBtwItems / 2,),
               const Divider(),
               const SizedBox(height: StoreSizes.spaceBtwItems,),
+
               ///details
               ///profile info details
-              const SectionHeading(title: 'Profile Info', showActionButton: false,),
+              const SectionHeading(
+                title: 'Profile Info', showActionButton: false,),
               const SizedBox(height: StoreSizes.spaceBtwItems,),
-              ProfileMenu(onPressed: () => Get.to(() => const ChangeName()), title: 'Name', value: controller.user.value.fullName,),
-              ProfileMenu(onPressed: () {  }, title: 'Username', value: controller.user.value.username,),
+              ProfileMenu(onPressed: () => Get.to(() => const ChangeName()),
+                title: 'Name',
+                value: controller.user.value.fullName,),
+              ProfileMenu(onPressed: () {},
+                title: 'Username',
+                value: controller.user.value.username,),
               const Divider(),
               const SizedBox(height: StoreSizes.spaceBtwItems / 2,),
+
               ///personal info
-              const SectionHeading(title: 'Personal Info', showActionButton: false,),
+              const SectionHeading(
+                title: 'Personal Info', showActionButton: false,),
               const SizedBox(height: StoreSizes.spaceBtwItems / 2,),
-              ProfileMenu(onPressed: () {  }, title: 'User ID', value: controller.user.value.id,),
-              ProfileMenu(onPressed: () {  }, title: 'E-mail', value: controller.user.value.email,),
-              ProfileMenu(onPressed: () {  }, title: 'Phone Number', value: controller.user.value.phoneNumber,),
-              ProfileMenu(onPressed: () {  }, title: 'Gender', value: 'Male',),
-              ProfileMenu(onPressed: () {  }, title: 'Date of Birth', value: '11 Jun, 1980',),
+              ProfileMenu(onPressed: () {},
+                title: 'User ID',
+                value: controller.user.value.id,),
+              ProfileMenu(onPressed: () {},
+                title: 'E-mail',
+                value: controller.user.value.email,),
+              ProfileMenu(onPressed: () {},
+                title: 'Phone Number',
+                value: controller.user.value.phoneNumber,),
+              ProfileMenu(onPressed: () {}, title: 'Gender', value: 'Male',),
+              ProfileMenu(onPressed: () {},
+                title: 'Date of Birth',
+                value: '11 Jun, 1980',),
               const Divider(),
               const SizedBox(height: StoreSizes.spaceBtwItems,),
               Center(
                 child: TextButton(
                   onPressed: () => controller.deleteAccountWarningPopup(),
-                  child: const Text('Close Account', style: TextStyle(color: Colors.red),),
+                  child: const Text(
+                    'Close Account', style: TextStyle(color: Colors.red),),
                 ),
               )
 

@@ -13,11 +13,13 @@ class ReAuthLoginForms extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = UserController.instance;
-    
+
     return Scaffold(
-      appBar: StoreAppBar(title: Text('Re-Authenticate User'),),
+      appBar: StoreAppBar(title: Text('Re-Authenticate User')),
       body: SingleChildScrollView(
-        child: Padding(padding: EdgeInsets.all(StoreSizes.defaultSpace,),
+        child: Padding(
+          padding: EdgeInsets.all(StoreSizes.defaultSpace),
+
           ///form
           child: Form(
             key: controller.reAuthFormKey,
@@ -29,31 +31,45 @@ class ReAuthLoginForms extends StatelessWidget {
                   controller: controller.verifyEmail,
                   validator: StoreValidator.validateEmail,
                   decoration: InputDecoration(
-                    labelText: StoreTexts.email, prefixIcon: Icon(Iconsax.direct_right)
+                    labelText: StoreTexts.email,
+                    prefixIcon: Icon(Iconsax.direct_right),
                   ),
                 ),
-                const SizedBox(height: StoreSizes.spaceBtwInputFields,),
+                const SizedBox(height: StoreSizes.spaceBtwInputFields),
+
                 ///password
                 Obx(
                   () => TextFormField(
                     obscureText: controller.hidePassword.value,
                     controller: controller.verifyPassword,
-                    validator: (value) => StoreValidator.validateEmptyText('Password', value),
+                    validator: (value) =>
+                        StoreValidator.validateEmptyText('Password', value),
                     decoration: InputDecoration(
-                        labelText: StoreTexts.password,
-                        prefixIcon: Icon(Iconsax.password_check),
-                      suffixIcon: IconButton(onPressed: () => controller.hidePassword.value != !controller.hidePassword.value,
-                          icon: const Icon(Iconsax.eye_slash))
+                      labelText: StoreTexts.password,
+                      prefixIcon: Icon(Iconsax.password_check),
+                      suffixIcon: IconButton(
+                        onPressed: () =>
+                            controller.hidePassword.value !=
+                            !controller.hidePassword.value,
+                        icon: const Icon(Iconsax.eye_slash),
+                      ),
                     ),
                   ),
                 ),
-                const SizedBox(height: StoreSizes.spaceBtwInputFields,),
+                const SizedBox(height: StoreSizes.spaceBtwInputFields),
+
                 ///login button
-                SizedBox(width: double.infinity, child: OutlinedButton(onPressed: () => controller.reAuthenticateEmailAndPassword(
-                  
-                ), child: Text('Verify')))
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () =>
+                        controller.reAuthenticateEmailAndPassword(),
+                    child: Text('Verify'),
+                  ),
+                ),
               ],
-            )),
+            ),
+          ),
         ),
       ),
     );
