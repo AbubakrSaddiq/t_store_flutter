@@ -18,7 +18,6 @@ class UserRepository extends GetxController {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   ///Function to save user data to Firestore
-
   createUser(UserModel user) async {
 
    await _db.collection("Users").doc(user.id).set(user.toJson()).whenComplete(
@@ -59,7 +58,6 @@ class UserRepository extends GetxController {
       throw 'Something went wrong. Please try again...';
     }
   }
-
 
   ///function to update user data in firebase
   Future<void> updateUserDetails(UserModel updatedUser) async {
@@ -114,7 +112,6 @@ class UserRepository extends GetxController {
 
       final url = await ref.getDownloadURL();
       return url;
-
     } on FirebaseException catch (e) {
       throw StoreFirebaseException(e.code).message;
     } on FormatException catch (_) {

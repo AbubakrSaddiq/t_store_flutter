@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/features/personalization/widgets/category_shimmer.dart';
+import 'package:t_store/features/shop/controllers/category_controller.dart';
 import 'package:t_store/features/shop/screens/sub_category/sub_category.dart';
 import 'package:t_store/features/shop/widgets/vertical_image_text.dart';
 
@@ -12,31 +14,31 @@ class HomeCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> categories = [
-      {"image": StoreImages.jewelryIcon, "title": "Jewelry"},
-      {"image": StoreImages.deviceIcon, "title": "Devices"},
-      {"image": StoreImages.toyIcon, "title": "Toy"},
-      {"image": StoreImages.appliancesIcon, "title": "Appliances"},
-      {"image": StoreImages.clothesIcon, "title": "Clothes"},
-      {"image": StoreImages.sportswearIcon, "title": "Sportswear"},
-    ];
-    return Padding(
-      padding: const EdgeInsets.only(left: 18.0),
-      child: SizedBox(
+   final categoryController = Get.put(CategoryController());
+
+    return Obx(() {
+      if(categoryController.isLoading.value) return const StoreCategoryShimmer();
+
+      if(categoryController.featuredCategories.isEmpty){
+        return Center(child: Text('No Data Found', style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),),);
+      }
+      return SizedBox(
         height: 110,
         child: ListView.builder(
           shrinkWrap: true,
-          itemCount: 6,
+          itemCount: categoryController.featuredCategories.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (_, index) {
+            final category = categoryController.featuredCategories[index];
             return VerticalImageText(
-              image: categories[index]["image"],
+              image: category.image,
+              title: category.name,
               onTap: () => Get.to(() => SubCategoryScreen()),
-              title: categories[index]["title"],
             );
           },
         ),
-      ),
-    );
+      );
+    });
+
   }
 }

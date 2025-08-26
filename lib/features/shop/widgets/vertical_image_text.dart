@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:t_store/features/shop/widgets/circular_image.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
@@ -10,13 +11,15 @@ class VerticalImageText extends StatelessWidget {
     required this.image,
     required this.title,
     this.textColor = StoreColors.white,
-    this.backgroundColor = StoreColors.white,
+    this.backgroundColor,
     this.onTap,
+    this.isNetworkImage = true
   });
 
   final String image, title;
   final Color textColor;
   final Color? backgroundColor;
+  final bool isNetworkImage;
   final void Function()? onTap;
 
   @override
@@ -31,20 +34,27 @@ class VerticalImageText extends StatelessWidget {
 
           children: [
             ///circular icon
-            Container(
-              width: 56,
-              height: 56,
-              padding: const EdgeInsets.all(StoreSizes.sm),
-              decoration: BoxDecoration(
-                  color: backgroundColor ?? (dark ? StoreColors.black : StoreColors.white),
-                  borderRadius: BorderRadius.circular(100)),
-              child: Center(
-                child: Image(
-                  image: AssetImage(image),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+           CircularImage(image: image,
+           fit: BoxFit.fitWidth,
+           padding: StoreSizes.sm * 1.4,
+           isNetworkImage: isNetworkImage,
+           backgroundColor: backgroundColor,
+           overlayColor: StoreHelperFunction.isDarkMode(context) ? StoreColors.light : StoreColors.dark,),
+
+            // Container(
+            //   width: 56,
+            //   height: 56,
+            //   padding: const EdgeInsets.all(StoreSizes.sm),
+            //   decoration: BoxDecoration(
+            //       color: backgroundColor ?? (dark ? StoreColors.black : StoreColors.white),
+            //       borderRadius: BorderRadius.circular(100)),
+            //   child: Center(
+            //     child: Image(
+            //       image: AssetImage(image),
+            //       fit: BoxFit.cover,
+            //     ),
+            //   ),
+            // ),
             const SizedBox(
               height: StoreSizes.spaceBtwItems / 2,
             ),
