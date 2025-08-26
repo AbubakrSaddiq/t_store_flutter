@@ -38,21 +38,24 @@ class CircularImage extends StatelessWidget {
             backgroundColor ?? (dark ? StoreColors.black : StoreColors.white),
         borderRadius: BorderRadius.circular(100),
       ),
-      child: Center(
-        child: isNetworkImage
-            ? CachedNetworkImage(
-                fit: fit,
-                color: overlayColor,
-                imageUrl: image,
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    const StoreShimmer(width: 55, height: 55, radius: 55,),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              )
-            : Image(
-                image: AssetImage(image),
-                color: overlayColor,
-                fit: fit,
-              ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: Center(
+          child: isNetworkImage
+              ? CachedNetworkImage(
+                  fit: fit,
+                  color: overlayColor,
+                  imageUrl: image,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      const StoreShimmer(width: 55, height: 55, radius: 55,),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                )
+              : Image(
+                  image: AssetImage(image),
+                  color: overlayColor,
+                  fit: fit,
+                ),
+        ),
       ),
     );
   }

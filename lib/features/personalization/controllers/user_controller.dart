@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/data/repositories/user/user_model.dart';
 import 'package:t_store/data/repositories/user/user_repository.dart';
@@ -21,6 +23,7 @@ class UserController extends GetxController {
   final userRepository = Get.put(UserRepository());
 
   final hidePassword = false.obs;
+  final imageUploading = false.obs;
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   final userRepo = Get.put(UserRepository());
@@ -166,6 +169,28 @@ class UserController extends GetxController {
 
 /// upload user profile picture
   uploadUserProfilePicture() async {
+    try{
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512, maxWidth: 512);
+      if(image != null){
+        imageUploading.value = true;
+      //   upload image
+        final imageUrl = await userRepository.uploadImage('User/Images/Profile/', image);
+      //   update user image record
+        Map<String, dynamic> json = {'ProfilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+
+        StoreLoaders.successSnackBar(title: 'Success', message: 'Profile picture updated');
+
+      }
+    }catch (e){
+      //Not uploading because firebase firestore is not subscribed. try changing...
+      StoreLoaders.errorSnackBar(title: 'Failed', message: 'Something went wrong, $e');
+    }finally{
+      imageUploading.value = false;
+    }
 
   }
 }
