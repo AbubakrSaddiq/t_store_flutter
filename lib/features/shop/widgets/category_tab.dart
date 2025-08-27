@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:t_store/features/shop/models/category_model.dart';
 import 'package:t_store/features/shop/widgets/product_card_vertical.dart';
 import 'package:t_store/features/shop/widgets/section_heading.dart';
 import '../../../utils/constants/image_strings.dart';
@@ -8,9 +9,10 @@ import 'layout/grid_layout.dart';
 
 class CategoryTab extends StatelessWidget {
   const CategoryTab({
-    super.key,
+    super.key, required this.category,
   });
 
+  final CategoryModel category;
   @override
   Widget build(BuildContext context) {
     return ListView(

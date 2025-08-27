@@ -39,6 +39,7 @@ class HomeCategories extends StatelessWidget {
         ),
       );
     });
+    
 
   }
 }

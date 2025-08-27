@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/features/shop/controllers/category_controller.dart';
 import 'package:t_store/features/shop/screens/all_brands/all_brands.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
@@ -19,9 +20,10 @@ class StoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = StoreHelperFunction.isDarkMode(context);
+    final categories = CategoryController.instance.featuredCategories;
 
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         appBar: StoreAppBar(
           title: Text(
@@ -79,20 +81,14 @@ class StoreScreen extends StatelessWidget {
                 /// tabs
                 bottom: StoreTabBar(
                   dark: dark,
-                  tabs: const [
-                    Tab(child: Text('Store')),
-                    Tab(child: Text('Electronics')),
-                    Tab(child: Text('Fashion')),
-                    Tab(child: Text('Sports')),
-                    Tab(child: Text('Toys')),
-                  ],
+                  tabs: categories.map((categories) => Tab(child: Text(categories.name))).toList()
                 ),
               ),
             ];
           },
 
           ///body
-          body: const TabBarView(children: [CategoryTab()]),
+          body:  TabBarView(children: categories.map((category) => CategoryTab(category: category,)).toList()),
         ),
       ),
     );
